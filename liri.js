@@ -69,8 +69,8 @@ inquirer.prompt([
         type: "input",
         name: "userInput",
         message: "Which band would you like to search?"
-    } 
-]).then(function(response) {
+    }
+]).then(function (response) {
     console.log(response);
     var bandURL = "https://rest.bandsintown.com/artists/" + response.userInput + "/events?app_id=codingbootcamp";
 
@@ -82,24 +82,24 @@ inquirer.prompt([
             console.log(moment(response.data[0].datetime).format("MM/DD/YYYY"));
 
 
-        }).catch(function(error) {
+        }).catch(function (error) {
             if (error.response) {
 
-              console.log("---------------Data---------------");
-              console.log(error.response.data);
-              console.log("---------------Status---------------");
-              console.log(error.response.status);
-              console.log("---------------Status---------------");
-              console.log(error.response.headers);
+                console.log("---------------Data---------------");
+                console.log(error.response.data);
+                console.log("---------------Status---------------");
+                console.log(error.response.status);
+                console.log("---------------Status---------------");
+                console.log(error.response.headers);
             } else if (error.request) {
 
-              console.log(error.request);
+                console.log(error.request);
             } else {
 
-              console.log("Error", error.message);
+                console.log("Error", error.message);
             }
             console.log(error.config);
-          });
+        });
 
 })
 
@@ -142,6 +142,8 @@ inquirer.prompt([
 
 })
 
+// Notes
+//  1) Unfortunately I was not able to get the spotify information. I was not sure if I was meant to use the url in line 114 or the seach example in https://www.npmjs.com/package/node-spotify-api. However the structure of this portion would be the same as the movie and band portions.
 
-
-
+// 2) I was not able to put in an endless loop to transition from question to question if the user chose to. Right now with all the code on, all three questions will appear at the same time. You would manually have to comment out two of the questions to get one working.
+    // How this endless loop would be done is asking the user to confirm if they want to answer another question at the end of the section just like lines 57-62. This would be done three times. After the third time and going through each section once, if the user wants to answer the questions again, it'll loop back to the start. movies > bands > spotify > movies and so on until the user confirms no.
