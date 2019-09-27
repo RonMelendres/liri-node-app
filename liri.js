@@ -67,9 +67,10 @@ inquirer.prompt([
     axios.get(bandURL).then(
         function (response) {
             console.log(response);
+            console.log(response.data[0].venue);
+            console.log("Venue: " + response.data[0].venue.name);
             console.log(moment(response.data[0].datetime).format("MM/DD/YYYY"));
-            console.log();
-            console.log();
+            
     
         }).catch(function(error) {
             if (error.response) {
